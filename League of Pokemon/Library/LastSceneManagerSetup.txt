@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/_Scens/Menu.unity
+- path: Assets/_Scens/ControllTest.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
