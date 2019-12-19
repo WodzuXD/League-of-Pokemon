@@ -24,4 +24,14 @@ public class ConnectionsMannager : MonoBehaviour
     {
         GUI.Label(new Rect(0, 0, 100, 20), PhotonNetwork.connectionStateDetailed.ToString());
     }
+
+    void OnJoinedLobby()
+    {
+        PhotonNetwork.JoinRandomRoom();
+    }
+
+    void OnPhotonRandomJoinFailed()
+    {
+        PhotonNetwork.CreateRoom(null);
+    }
 }
