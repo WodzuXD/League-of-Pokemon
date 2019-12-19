@@ -24,18 +24,13 @@ public class MenuSC : MonoBehaviour
     {
         if (nickField.text.Length > 3)
         {
+            PhotonNetwork.playerName = nickField.text;
             cm.ConnectToGameServer();
         }
     }
     
     void Update()
     {
-        if (sl.value > 0.35f && sl.value < 0.65f)
-            sl.value = 0.5f;
-        if (sl.value < 0.35f)
-            sl.value = 0.0f;
-        if (sl.value > 0.65f)
-            sl.value = 1.0f;
         iconButton.sprite = icons[icon];
     }
 
