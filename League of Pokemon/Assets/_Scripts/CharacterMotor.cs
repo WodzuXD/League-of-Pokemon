@@ -8,13 +8,13 @@ public class CharacterMotor : MonoBehaviour
 {
     NavMeshAgent agent;
 
-    // getting agent
+    //setup
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
     }
 
-    // start move
+    //moving
     public void moveToPoint(Vector3 point)
     {
         agent.SetDestination(point);

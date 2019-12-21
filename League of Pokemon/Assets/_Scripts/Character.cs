@@ -5,6 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 using TMPro;
 
+//general character script for players minions and mobs
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(NavMeshAgent))]
 public class Character : MonoBehaviour
@@ -15,35 +16,38 @@ public class Character : MonoBehaviour
     NavMeshAgent agent;
 
     [SerializeField]
-    float HP;
+    protected float HP;
     [SerializeField]
-    float HPMax;
+    protected float HPMax;
     [SerializeField]
-    float speed;
+    protected float speed;
     [SerializeField]
-    int damage;
+    protected int damage;
     [SerializeField]
-    int lifeSteal;
+    protected int lifeSteal;
     [SerializeField]
-    float attackSpeed;
+    protected float attackSpeed;
 
     [SerializeField]
     TextMeshProUGUI nameBox;
     [SerializeField]
     Slider healthSlider;
 
-    // Start is called before the first frame update
+    protected Camera cam;
+    
+    // Setup
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
         nameBox.text = pokemonName;
         healthSlider.value = HP / HPMax;
+        cam = Camera.main;
     }
 
-    // Update is called once per frame
-    void Update()
+    // Update healtbar(only visual)
+    protected virtual void Update()
     {
-        
+        healthSlider.value = HP / HPMax;
     }
 }
