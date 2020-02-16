@@ -1,0 +1,108 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class ConnectionsMannager : Photon.MonoBehaviour
+{
+    MenuSC msc;
+    GameManager gm;
+
+    private void Start()
+    {
+        msc = FindObjectOfType<MenuSC>();
+        gm = GetComponent<GameManager>();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+            Player.DebugPlayersList();
+    }
+
+    public void ConnectToGameServer()
+    {
+        PhotonNetwork.sendRate = 30;
+        PhotonNetwork.sendRateOnSerialize = 30;
+        PhotonNetwork.ConnectUsingSettings("LoP_1.0");
+    }
+
+    private void OnGUI()
+    {
+        GUI.Label(new Rect(0, 0, 100, 20), PhotonNetwork.connectionStateDetailed.ToString());
+    }
+
+    void OnJoinedLobby()
+    {
+        PhotonNetwork.JoinRandomRoom();
+    }
+
+    void OnPhotonRandomJoinFailed()
+    {
+        PhotonNetwork.CreateRoom(null);
+    }
+
+    void OnPhotonPlayerConnected(PhotonPlayer pp)
+    {
+        if (PhotonNetwork.isMasterClient)
+        {
+            int haracter = 0;
+            int team = 0;
+            if (msc.sl.value == 0)
+                team = 0;
+            if (msc.sl.value == 1)
+                team = 1;
+            if (msc.sl.value == 0.5f)
+                team = Random.Range(0, 2);
+            haracter = msc.icon;
+            photonView.RPC("PlayerConnected", PhotonTargets.AllBuffered, pp, team, haracter);
+        }
+    }
+
+    void OnPhotonPlayerDisconnected(PhotonPlayer pp)
+    {
+        if (PhotonNetwork.isMasterClient)
+        {
+            photonView.RPC("PlayerDisconnected", PhotonTargets.AllBuffered, pp);
+        }
+    }
+
+    [PunRPC]
+    private void PlayerConnected(PhotonPlayer pp, int team, int haracter)
+    {
+        Player player = new Player();
+        player.nick = pp.NickName;
+        player.pp = pp;
+        Player.players.Add(player);
+        player.team = (Team)team;
+        player.haracter = haracter;
+        if (pp == PhotonNetwork.player)
+        {
+            //respienie gracza
+            Player.mainPlayer = player;
+            gm.SpawnPlayer();
+        }
+    }
+
+    [PunRPC]
+    private void PlayerDisconnected(PhotonPlayer pp)
+    {
+        var tmpPlayer = Player.FindPlayer(pp);
+        if (tmpPlayer != null)
+            Player.players.Remove(tmpPlayer);
+    }
+
+    void OnCreatedRoom()
+    {
+        int haracter = 0;
+        int team = 0;
+        if (msc.sl.value == 0)
+            team = 0;
+        if (msc.sl.value == 1)
+            team = 1;
+        if (msc.sl.value == 0.5f)
+            team = Random.Range(0, 2);
+        haracter = msc.icon;
+        photonView.RPC("PlayerConnected", PhotonTargets.AllBuffered, PhotonNetwork.player, team, haracter);
+    }
+}

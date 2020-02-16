@@ -1574,13 +1574,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1035439079}
   m_TextComponent: {fileID: 428700762}
   m_Placeholder: {fileID: 128331924}
-  m_ContentType: 0
+  m_ContentType: 4
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 1
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 3
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -2828,6 +2828,7 @@ GameObject:
   - component: {fileID: 2146315912}
   - component: {fileID: 2146315914}
   - component: {fileID: 2146315915}
+  - component: {fileID: 2146315916}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -2912,3 +2913,15 @@ MonoBehaviour:
   instantiationId: 1
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &2146315916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146315911}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ba9c08f6a84ce4aa7f1b814b36c25f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

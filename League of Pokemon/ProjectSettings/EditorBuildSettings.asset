@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scens/Menu.unity
     guid: 1a55ed8e189e113478ee33593e53b728
+  - enabled: 1
+    path: Assets/_Scens/Aram.unity
+    guid: 018b3a327356b574daee0777a1564d75
+  - enabled: 0
+    path: Assets/_Scens/AramR.unity
+    guid: 0a1f485598a65034a8054f2ef16249b9
   m_configObjects: {}
