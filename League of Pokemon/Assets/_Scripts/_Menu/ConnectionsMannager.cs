@@ -24,13 +24,7 @@ public class ConnectionsMannager : Photon.MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
             Player.DebugPlayersList();
 
-        if (msc.sl.value == 0)
-            team = 0;
-        if (msc.sl.value == 1)
-            team = 1;
-        if (msc.sl.value == 0.5f)
-            team = Random.Range(0, 2);
-        haracter = msc.icon;
+
     }
 
     public void ConnectToGameServer()
@@ -59,6 +53,13 @@ public class ConnectionsMannager : Photon.MonoBehaviour
     {
         if (PhotonNetwork.isMasterClient)
         {
+            if (msc.sl.value == 0)
+                team = 0;
+            if (msc.sl.value == 1)
+                team = 1;
+            if (msc.sl.value == 0.5f)
+                team = Random.Range(0, 2);
+            haracter = msc.icon;
             photonView.RPC("PlayerConnected", PhotonTargets.AllBuffered, pp, team, haracter);
         }
     }
@@ -99,6 +100,13 @@ public class ConnectionsMannager : Photon.MonoBehaviour
 
     void OnCreatedRoom()
     {
+        if (msc.sl.value == 0)
+            team = 0;
+        if (msc.sl.value == 1)
+            team = 1;
+        if (msc.sl.value == 0.5f)
+            team = Random.Range(0, 2);
+        haracter = msc.icon;
         photonView.RPC("PlayerConnected", PhotonTargets.AllBuffered, PhotonNetwork.player, team, haracter);
     }
 }

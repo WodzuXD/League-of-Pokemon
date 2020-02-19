@@ -1,6 +1,9 @@
 ScriptsOnlyBuild:
   usedScripts:
+    Assembly-CSharp-Editor.dll:
+    - PunSceneSettings
     Assembly-CSharp.dll:
+    - AutoDestroy
     - CameraMovement
     - CharacterController
     - CharacterMotor
@@ -10,6 +13,7 @@ ScriptsOnlyBuild:
     - NetPosSyn
     - PhotonView
     - ServerSettings
+    - Teams
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro.dll:
@@ -119,6 +123,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12410}
     - Class: 114
+      Script: {instanceID: 12630}
+    - Class: 114
       Script: {instanceID: 12830}
     - Class: 114
       Script: {instanceID: 12930}
@@ -133,19 +139,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13230}
     - Class: 114
-      Script: {instanceID: 13550}
+      Script: {instanceID: 13402}
     - Class: 114
-      Script: {instanceID: 13762}
+      Script: {instanceID: 13552}
     - Class: 114
-      Script: {instanceID: 13928}
+      Script: {instanceID: 13764}
     - Class: 114
-      Script: {instanceID: 14018}
+      Script: {instanceID: 13930}
     - Class: 114
-      Script: {instanceID: 14056}
+      Script: {instanceID: 14020}
     - Class: 114
-      Script: {instanceID: 14084}
+      Script: {instanceID: 14058}
     - Class: 114
-      Script: {instanceID: 14088}
+      Script: {instanceID: 14086}
+    - Class: 114
+      Script: {instanceID: 14090}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -401,7 +409,7 @@ ScriptsOnlyBuild:
     className: PhotonRigidbody2DView
   - hash:
       serializedVersion: 2
-      Hash: f15fef14ed159416fbb8ea8940b376cc
+      Hash: 2006ef8f8e7d35aeffcc10749cf08b9c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CharacterController
@@ -687,6 +695,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PunTurnManager
+  - hash:
+      serializedVersion: 2
+      Hash: a01ad9f05e1a63aa5f0018f2dc19a00f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Teams
   - hash:
       serializedVersion: 2
       Hash: 9db963832ef7feebd35f44e6ad6f646c
