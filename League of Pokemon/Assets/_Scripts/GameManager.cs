@@ -23,14 +23,14 @@ public class GameManager : MonoBehaviour
         GameObject mainPlayerGO = PhotonNetwork.Instantiate("Player" + Player.mainPlayer.haracter, spawnPosition, Quaternion.identity, 0);
         mainPlayerGO.GetComponent<CharacterController>().enabled = true;
         mainPlayerGO.GetComponent<CharacterMotor>().enabled = true;
-        GetComponent<PhotonView>().RPC("SpawnPlayerRPC", PhotonTargets.AllBuffered, Player.mainPlayer.nick, mainPlayerGO.GetComponent<PhotonView>().viewID);
+        GetComponent<PhotonView>().RPC("SpawnPlayerRPC", PhotonTargets.AllBuffered, Player.mainPlayer.nick, mainPlayerGO.GetComponent<PhotonView>().viewID, Player.mainPlayer.haracter);
     }
 
     [PunRPC]
-    void SpawnPlayerRPC(string nick, int pvID, PhotonMessageInfo pmi)
+    void SpawnPlayerRPC(string nick, int pvID, int character, PhotonMessageInfo pmi)
     {
         GameObject newPlayerGO = PhotonView.Find(pvID).gameObject;
-        newPlayerGO.name = "Player_" + nick;
+        newPlayerGO.name = "Player_" + nick + "_" + character;
         Player player = Player.FindPlayer(pmi.sender);
         player.gameobject = newPlayerGO;
     }

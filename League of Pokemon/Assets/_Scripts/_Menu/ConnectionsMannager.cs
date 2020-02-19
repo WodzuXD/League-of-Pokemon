@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class ConnectionsMannager : Photon.MonoBehaviour
 {
+
+    int haracter = 0;
+    int team = 0;
+
+
     MenuSC msc;
     GameManager gm;
 
@@ -18,13 +23,21 @@ public class ConnectionsMannager : Photon.MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
             Player.DebugPlayersList();
+
+        if (msc.sl.value == 0)
+            team = 0;
+        if (msc.sl.value == 1)
+            team = 1;
+        if (msc.sl.value == 0.5f)
+            team = Random.Range(0, 2);
+        haracter = msc.icon;
     }
 
     public void ConnectToGameServer()
     {
-        PhotonNetwork.sendRate = 30;
-        PhotonNetwork.sendRateOnSerialize = 30;
-        PhotonNetwork.ConnectUsingSettings("LoP_1.0");
+        PhotonNetwork.sendRate = 20;
+        PhotonNetwork.sendRateOnSerialize = 20;
+        PhotonNetwork.ConnectUsingSettings("LoP_1.1");
     }
 
     private void OnGUI()
@@ -46,15 +59,6 @@ public class ConnectionsMannager : Photon.MonoBehaviour
     {
         if (PhotonNetwork.isMasterClient)
         {
-            int haracter = 0;
-            int team = 0;
-            if (msc.sl.value == 0)
-                team = 0;
-            if (msc.sl.value == 1)
-                team = 1;
-            if (msc.sl.value == 0.5f)
-                team = Random.Range(0, 2);
-            haracter = msc.icon;
             photonView.RPC("PlayerConnected", PhotonTargets.AllBuffered, pp, team, haracter);
         }
     }
@@ -68,14 +72,15 @@ public class ConnectionsMannager : Photon.MonoBehaviour
     }
 
     [PunRPC]
-    private void PlayerConnected(PhotonPlayer pp, int team, int haracter)
+    private void PlayerConnected(PhotonPlayer pp, int team, int character)
     {
         Player player = new Player();
         player.nick = pp.NickName;
         player.pp = pp;
         Player.players.Add(player);
         player.team = (Team)team;
-        player.haracter = haracter;
+        //player.haracter = character;
+
         if (pp == PhotonNetwork.player)
         {
             //respienie gracza
@@ -94,15 +99,6 @@ public class ConnectionsMannager : Photon.MonoBehaviour
 
     void OnCreatedRoom()
     {
-        int haracter = 0;
-        int team = 0;
-        if (msc.sl.value == 0)
-            team = 0;
-        if (msc.sl.value == 1)
-            team = 1;
-        if (msc.sl.value == 0.5f)
-            team = Random.Range(0, 2);
-        haracter = msc.icon;
         photonView.RPC("PlayerConnected", PhotonTargets.AllBuffered, PhotonNetwork.player, team, haracter);
     }
 }

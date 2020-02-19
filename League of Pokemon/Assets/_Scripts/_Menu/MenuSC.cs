@@ -34,6 +34,9 @@ public class MenuSC : MonoBehaviour
     
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
+
         iconButton.sprite = icons[icon];
 
         if (sl.value < 0.3f)

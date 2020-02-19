@@ -8,8 +8,8 @@ public class Player
     public static Player mainPlayer;
     public string nick = "";
     public PhotonPlayer pp;
-    public int haracter;
     public Team team;
+    public int haracter;
 
     public static List<Player> players = new List<Player>();
 
@@ -18,7 +18,7 @@ public class Player
         string dbgS = "Players List      " + players.Count + " Players!\n";
         int i = 0;
         foreach (var player in players)
-            dbgS += "ID: " + i + ", Nick: " + player.nick + ", Team: " + player.team + "\n";
+            dbgS += "ID: " + i + ", Nick: " + player.nick + ", Character: " + player.haracter + ", Team: " + player.team + "\n";
             i++;
         Debug.Log(dbgS);
     }
