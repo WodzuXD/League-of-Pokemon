@@ -79,7 +79,7 @@ public class ConnectionsMannager : Photon.MonoBehaviour
         player.pp = pp;
         Player.players.Add(player);
         player.team = (Team)team;
-        //player.haracter = character;
+        player.haracter = character;
 
         if (pp == PhotonNetwork.player)
         {
